@@ -1,9 +1,9 @@
 import type { NuxtConfig } from '@nuxt/types'
 
-const config: NuxtConfig = {
+const config : NuxtConfig = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'various-service',
+    title: 'frontend',
     htmlAttrs: {
       lang: 'en',
     },

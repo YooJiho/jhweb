@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "target": "ES2018",
+    "module": "commonjs",
     "lib": ["es2018"],
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "typeRoots": ["./types"]
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   }
 }

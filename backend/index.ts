@@ -1,38 +1,27 @@
 import * as Koa from 'koa'
-import * as Router from 'koa-router';
-import * as bodyParser from 'koa-bodyParser';
-import { sequelize } from './models';
+import * as Router from 'koa-router'
+import * as bodyParser from 'koa-bodyParser'
+import * as cors from '@koa/cors'
+import { sequelize } from './models'
 
-import User from './models/user'
+import userRouter from './routes/user'
 
 const app: Koa = new Koa()
 const router: Router = new Router()
 const port: number = 8081
 
 app.use(bodyParser())
+app.use(cors({
+    origin: 'localhost:8080',
+    credentials: true
+}))
 
 router.get('/', async (ctx: Koa.Context) => {
     ctx.body = 'backend index page!'
 })
 
-router.post('/user', async (ctx: Koa.Context, next: () => Promise<any>) => {
-    const { userId, password, nickname } = ctx.request.body
-
-    try {    
-        const newUser = await User.create({
-            userId,
-            password,
-            nickname
-        })
-
-        ctx.status = 201
-        ctx.body = newUser
-    } catch (error) {
-        console.error(error)
-    }
-})
-
-app.use(router.routes())
+router.use('/user', userRouter.routes())
+app.use(router.routes()).use(userRouter.allowedMethods())
 
 app.on('error', console.error)
 

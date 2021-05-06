@@ -1,11 +1,11 @@
-import * as Koa from 'koa'
-import * as Router from 'koa-router'
-import * as bcrypt from 'bcrypt'
+import Koa from 'koa'
+import Router from 'koa-router'
+import bcrypt from 'bcrypt'
 import User from '../models/user'
 
 const userRouter: Router = new Router()
 
-userRouter.post('/', async (ctx: Koa.Context, next: () => Promise<any>) => {
+userRouter.post('/', async (ctx, next) => {
     const { userId, password, nickname } = ctx.request.body
     const hash = await bcrypt.hash(password, 12)
     try {    
@@ -18,7 +18,8 @@ userRouter.post('/', async (ctx: Koa.Context, next: () => Promise<any>) => {
         ctx.status = 201
         ctx.body = newUser
     } catch (error) {
-        console.error(error)
+        console.log(error)
+        return next()
     }
 })
 

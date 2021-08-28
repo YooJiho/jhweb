@@ -1,6 +1,7 @@
-import type { NuxtConfig } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
+import { NuxtState } from '@nuxt/types/app'
 
-const config : NuxtConfig = {
+const NuxtConfig: NuxtConfig = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'frontend',
@@ -43,4 +44,4 @@ const config : NuxtConfig = {
   build: {},
 }
 
-export default config
+export default NuxtConfig
